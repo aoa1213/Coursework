@@ -27,11 +27,33 @@ def explore_datafile(filename):
         print(f"Column: {col}, Unique Values: {df[col].nunique()}")
         print(f"Some unique values from {col}: {df[col].unique()[:5]}", "\n")
 
-    # Define the extreme value
+   # Step 8: Calculate the key value for analysising the data
+    print("Distribution of numerical columns:")
+    for col in df.select_dtypes(include=['float64', 'int64']).columns:
+        print(f"Column: {col}")
+        print(f"Mean: {df[col].mean()}, Median: {df[col].median()}, Std Dev: {df[col].std()}")
+        print(f"Min: {df[col].min()}, Max: {df[col].max()}", "\n")
 
 
 
-# def data_preparation(df):
+    # Step 9: check for data qulity
+    for col in df.select_dtypes(include=['float64', 'int64']).columns:
+        
+
+#     print("Checking for potential data quality issues:")
+#     for col in df.select_dtypes(include=['float64', 'int64']).columns:
+#         Q1 = df[col].quantile(0.25)
+#         Q3 = df[col].quantile(0.75)
+#         IQR = Q3 - Q1
+#         lower_bound = Q1 - 1.5 * IQR
+#         upper_bound = Q3 + 1.5 * IQR
+#         extreme_value = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
+#         #cleaned_data_1 = df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+#         print(extreme_value['Age'])
+#         print(f"extreme value in {col}: {extreme_value.shape[0]} rows")
+
+
+# # def data_preparation(df):
 #     # Step 5: Delte the column not needed
 #     column_name_to_drop =["Borough Code","Officer OCU"]
 #     df = df.drop(column_name_to_drop, axis=1)
